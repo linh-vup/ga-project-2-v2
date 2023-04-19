@@ -1,0 +1,57 @@
+@import '~bulma/bulma.sass'; // ! comment out this line if you DO NOT want to use Bulma
+
+* {
+  box-sizing: border-box;
+  font-weight: 700;
+  font-family: 'Rubik', serif;
+}
+
+body {
+  margin: 0;
+  background-color: #fefbe9;
+  font-weight: 700;
+  font-family: 'Orbitron', sans-serif;
+  height: 100vh;
+  color: #183a1d;
+}
+
+.navbar {
+  background-color: #fefbe9;
+  font-family: 'Orbitron', sans-serif;
+  color: #183a1d;
+}
+.container {
+  color: blue;
+}
+
+h1.title {
+  color: #fefbe9;
+  text-align: center;
+}
+
+h2.title {
+  color: #183a1d;
+}
+
+.hero {
+  background-color: #183a1d;
+}
+
+.navbar-item {
+  color: #183a1d;
+}
+
+.button {
+  border: 1px solid hsl(129, 41%, 16%);
+  background-color: hsla(129, 41%, 16%, 0.7);
+  color: #fefbe9;
+}
+input {
+  padding: 10px;
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+audio {
+  margin: 15px 0;
+}
