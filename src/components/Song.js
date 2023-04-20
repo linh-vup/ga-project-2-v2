@@ -12,13 +12,11 @@ function Song() {
   useEffect(() => {
     const startDataFetching = (offset) => {
       // const offset = Math.floor(Math.random() * 800);
-      console.log(offset);
       getAlbums(offset)
         .then((res) => {
           const albumsByYear = res.data.albums.filter(
             (album) => album.originallyReleased.substring(0, 4) === selectedYear
           );
-          console.log({ albumsByYear });
 
           // if selected year returns any albums published in that year
 

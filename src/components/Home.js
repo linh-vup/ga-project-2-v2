@@ -26,7 +26,6 @@ function Home() {
       <section className="hero is-small">
         <div className="hero-body">
           <h1 className="title is-one">Discover music from a random year</h1>
-          {/* <p className="subtitle">Discover music from your year of birth</p> */}
         </div>
       </section>
       <main>
@@ -40,8 +39,9 @@ function Home() {
               dateFormat="yyyy"
               minDate={subtractYears(date, 20)}
               maxDate={new Date()}
+              style={{ width: 300 }}
             />
-            <button className="button is-fullwidth" onClick={handleSelect}>
+            <button className="button" onClick={handleSelect}>
               Get My Random Song
             </button>
           </div>
