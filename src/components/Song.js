@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAlbums, getAlbumWithTracks, getTrack, getImages } from '../lib/api';
+import '../styles/song.scss';
 
 function Song() {
   const { selectedYear } = useParams();
   const [artwork, setArtwork] = useState('');
   const [track, setTrack] = useState(null);
-  const [newChoice, setNewChoice] = useState(false);
+  const [newSong, setNewSong] = useState(false);
 
   useEffect(() => {
     const startDataFetching = (offset) => {
+      // const offset = Math.floor(Math.random() * 800);
+      console.log(offset);
       getAlbums(offset)
         .then((res) => {
           const albumsByYear = res.data.albums.filter(
             (album) => album.originallyReleased.substring(0, 4) === selectedYear
           );
+          console.log({ albumsByYear });
 
           // if selected year returns any albums published in that year
 
@@ -48,66 +52,64 @@ function Song() {
                 getTrack(randomSongId)
                   .then((res) => {
                     setTrack(res.data);
-                    // setNewChoice(false);
                   })
                   .catch((err) => console.error(err));
               })
               .catch((err) => console.error(err));
           } else {
-            startDataFetching(offset + 200);
+            startDataFetching((offset + 200) % 800);
           }
         })
         .catch((err) => console.error(err));
     };
-    startDataFetching(0);
-  }, [newChoice]);
+    const offset = Math.floor(Math.random() * 800);
+    startDataFetching(offset);
+  }, [newSong]);
 
   if (track === null) {
     return <p>Loading</p>;
   }
 
   const toggleNewSong = () => {
-    setNewChoice((value) => !value);
+    setNewSong((value) => !value);
   };
 
   return (
     <>
       {/* Q? Not sure why below isn't centered on page, I thought className "container" makes it centered */}
       <div className="container">
-        <div className="column is-half-desktop is-one-half-tablet container">
-          <div className="card">
-            <div className="card-header">
-              <h4 className="card-header-title">{track.tracks[0].name}</h4>
-            </div>
-            <div className="card-image">
-              <figure className="image image is-1by1">
-                <img
-                  src={artwork}
-                  alt="album artwork"
-                  loading="lazy"
-                  width="255"
-                  height="255"
-                />
-              </figure>
-            </div>
-            <div className="card-content">
-              <h4 className="">
-                <strong>Artist:</strong> {track.tracks[0].artistName}
-              </h4>
-              <h4 className="">
-                <strong>Album/EP:</strong> {track.tracks[0].albumName}
-              </h4>
-              <h4 className="">
-                <strong>Released:</strong> {track.tracks[0].albumName}
-              </h4>
-              <audio controls src={track.tracks[0].previewURL}></audio>
-              <button
-                className="button is-fullwidth is-medium"
-                onClick={toggleNewSong}
-              >
-                Give me another one
-              </button>
-            </div>
+        <div className="card">
+          <div className="card-header">
+            <h4 className="card-header-title">{track.tracks[0].name}</h4>
+          </div>
+          <div className="card-image">
+            <figure className="image image is-1by1">
+              <img
+                src={artwork}
+                alt="album artwork"
+                loading="lazy"
+                width="255"
+                height="255"
+              />
+            </figure>
+          </div>
+          <div className="card-content">
+            <h4 className="">
+              <strong>Artist:</strong> {track.tracks[0].artistName}
+            </h4>
+            <h4 className="">
+              <strong>Album/EP:</strong> {track.tracks[0].albumName}
+            </h4>
+            <h4 className="">
+              <strong>Released:</strong> {track.tracks[0].albumName}
+            </h4>
+            <audio controls src={track.tracks[0].previewURL}></audio>
+            <button
+              className="button is-fullwidth is-medium"
+              onClick={toggleNewSong}
+            >
+              Give me another one
+            </button>
           </div>
         </div>
       </div>

@@ -1,0 +1,19 @@
+audio {
+  margin: 15px 0;
+  max-width: 100%;
+}
+
+img {
+  border: 1px solid #183a1d;
+}
+
+.card {
+  height: fit-content;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    max-width: 90%;
+    margin: 20px 0;
+  }
+}

@@ -1,0 +1,14 @@
+nav {
+  border-bottom: 1px solid #183a1d;
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.nav-container {
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  padding: 0 48px;
+}
