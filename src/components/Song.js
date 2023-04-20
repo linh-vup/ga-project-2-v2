@@ -7,7 +7,7 @@ function Song() {
   const { selectedYear } = useParams();
   const [artwork, setArtwork] = useState('');
   const [track, setTrack] = useState(null);
-  const [newSong, setNewSong] = useState(false);
+  const [requestNewSong, setRequestNewSong] = useState(false);
 
   useEffect(() => {
     const startDataFetching = (offset) => {
@@ -17,7 +17,6 @@ function Song() {
           const albumsByYear = res.data.albums.filter(
             (album) => album.originallyReleased.substring(0, 4) === selectedYear
           );
-          console.log(albumsByYear);
 
           // if selected year returns any albums published in that year
 
@@ -62,9 +61,8 @@ function Song() {
         .catch((err) => console.error(err));
     };
     const offset = Math.floor(Math.random() * 800);
-    console.log(offset);
     startDataFetching(offset);
-  }, [newSong]);
+  }, [requestNewSong]);
 
   if (track === null) {
     return (
@@ -75,7 +73,7 @@ function Song() {
   }
 
   const toggleNewSong = () => {
-    setNewSong((value) => !value);
+    setRequestNewSong((value) => !value);
   };
 
   return (

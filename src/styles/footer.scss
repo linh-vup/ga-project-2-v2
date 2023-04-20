@@ -2,8 +2,14 @@ footer {
   position: sticky;
   top: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: center;
   width: 100vw;
   height: 50px;
-  padding: 10px 20px;
+  margin-bottom: 16px;
+}
+
+p footer {
+  font-weight: 400;
 }

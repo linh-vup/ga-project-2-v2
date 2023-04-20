@@ -39,6 +39,7 @@
     "@babel/eslint-parser": "^7.5.4",
     "@babel/preset-react": "^7.18.6",
     "bulma": "^0.9.4",
+    "gh-pages": "^5.0.0",
     "netlify-cli": "^12.9.2",
     "node-sass": "^7.0.3"
   }
