@@ -17,6 +17,7 @@ function Song() {
           const albumsByYear = res.data.albums.filter(
             (album) => album.originallyReleased.substring(0, 4) === selectedYear
           );
+          console.log(albumsByYear);
 
           // if selected year returns any albums published in that year
 
@@ -61,11 +62,16 @@ function Song() {
         .catch((err) => console.error(err));
     };
     const offset = Math.floor(Math.random() * 800);
+    console.log(offset);
     startDataFetching(offset);
   }, [newSong]);
 
   if (track === null) {
-    return <p>Loading</p>;
+    return (
+      <div className="container">
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   const toggleNewSong = () => {
