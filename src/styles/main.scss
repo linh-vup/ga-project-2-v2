@@ -19,6 +19,7 @@ body {
   background-color: #fefbe9;
   font-family: 'Orbitron', sans-serif;
   color: #183a1d;
+  border-bottom: 1px solid #183a1d;
 }
 .container {
   color: blue;
@@ -42,7 +43,7 @@ h2.title {
 }
 
 .button {
-  border: 1px solid hsl(129, 41%, 16%);
+  // border: 1px solid hsl(129, 41%, 16%);
   background-color: hsla(129, 41%, 16%, 0.7);
   color: #fefbe9;
 }

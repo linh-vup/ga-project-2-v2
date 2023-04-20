@@ -6,6 +6,7 @@ function Song() {
   const { selectedYear } = useParams();
   const [artwork, setArtwork] = useState('');
   const [track, setTrack] = useState(null);
+  const [newChoice, setNewChoice] = useState(false);
 
   useEffect(() => {
     const startDataFetching = (offset) => {
@@ -25,10 +26,14 @@ function Song() {
             // access api endpoint for selected album images and set artwork
             const randomAlbumImagesEndpoint = randomAlbum.links.images.href;
             getImages(randomAlbumImagesEndpoint).then(({ data }) => {
-              const randomNumber = Math.floor(
-                Math.random() * data.images.length
+              const highestRes = Math.max(
+                ...data.images.map((image) => image.height)
               );
-              setArtwork(data.images[randomNumber].url);
+              const highestResElement = data.images.filter(
+                (image) => image.width === highestRes
+              );
+              const urlWithHighestRes = highestResElement[0].url;
+              setArtwork(urlWithHighestRes);
             });
 
             // access API endpoint for album with all tracks
@@ -41,7 +46,10 @@ function Song() {
                     .id;
 
                 getTrack(randomSongId)
-                  .then((res) => setTrack(res.data))
+                  .then((res) => {
+                    setTrack(res.data);
+                    // setNewChoice(false);
+                  })
                   .catch((err) => console.error(err));
               })
               .catch((err) => console.error(err));
@@ -52,15 +60,14 @@ function Song() {
         .catch((err) => console.error(err));
     };
     startDataFetching(0);
-  }, []);
+  }, [newChoice]);
 
   if (track === null) {
-    console.log(track);
     return <p>Loading</p>;
   }
 
-  const reloadPage = () => {
-    window.location.reload();
+  const toggleNewSong = () => {
+    setNewChoice((value) => !value);
   };
 
   return (
@@ -95,8 +102,8 @@ function Song() {
               </h4>
               <audio controls src={track.tracks[0].previewURL}></audio>
               <button
-                className="button is-fullwidth is-medium is-link"
-                onClick={reloadPage}
+                className="button is-fullwidth is-medium"
+                onClick={toggleNewSong}
               >
                 Give me another one
               </button>
