@@ -2,13 +2,13 @@ import axios from 'axios';
 
 const ALBUMS_URL = 'https://api.napster.com/v2.2/albums/top';
 const API_KEY = {
-  params: { apikey: 'YTY2NzM4ODgtMTdhNi00MWQ5LTkyZDktMmZjODBkYzA4N2Qw' }
+  params: { apikey: process.env.REACT_APP_NAPSTER_API_KEY }
 };
 
 const getParams = (offset) => ({
   params: {
     limit: 200,
-    apikey: 'YTY2NzM4ODgtMTdhNi00MWQ5LTkyZDktMmZjODBkYzA4N2Qw',
+    apikey: process.env.REACT_APP_NAPSTER_API_KEY,
     offset
   }
 });
