@@ -13,6 +13,7 @@ body {
   font-family: 'Orbitron', sans-serif;
   height: 100vh;
   color: #183a1d;
+  position: relative;
 }
 
 .navbar {
@@ -42,10 +43,35 @@ h2.title {
   color: #183a1d;
 }
 
+a .navbar-item:hover {
+  color: #183a1d;
+  text-decoration: dashed;
+}
+
+a:hover {
+  color: #183a1d;
+  text-decoration: #183a1d;
+}
 .button {
   // border: 1px solid hsl(129, 41%, 16%);
   background-color: hsla(129, 41%, 16%, 0.7);
   color: #fefbe9;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+.footer-link {
+  color: #183a1d;
+  padding-bottom: 20px;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
 }
 input {
   padding: 10px;

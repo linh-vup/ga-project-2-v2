@@ -4,6 +4,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Song from './components/Song';
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<p>Oops, page not found</p>} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
